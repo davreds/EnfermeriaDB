@@ -130,6 +130,21 @@ public class Huesped {
 	public void setNumCama(int numCama) {
 		this.numCama = numCama;
 	}
+
+	public String fechaNacimientotoString() {
+		
+		return fechaNacimiento.toPattern();
+	}
 	
+	public String fechaIngresotoString() {
+		return fechaIngreso.toPattern();
+	}
 	
+	public String numCuartotoString() {
+		return Integer.toString(numCuarto);
+	}
+	
+	public String numCamatoString() {
+		return Integer.toString(numCama);
+	}
 }
