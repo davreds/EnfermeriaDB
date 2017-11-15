@@ -1,45 +1,75 @@
 package clases;
-import java.text.*;
+import java.time.LocalDateTime;
 
 public class Medicamento {
-	private int idMedicamento;
+	//Atributos
+	private String idHuesp;
+	private String nomMedicamento;
 	private int cantidad;
-	private String descMedicamento;
-	private int dosisMat;
-	private int dosisVesp;
-	private int dosisNoct;
-	private SimpleDateFormat fechaActualizacion;
-	private String enfermero;
+	private LocalDateTime fecAct;
+	private int conMat;
+	private int conVesp;
+	private int conNoct;
+	private int numEv;
+	private String nomEnfermero;
 	
+	//Constructor vacio
 	public Medicamento() {
-		this.idMedicamento = 0;
+		this.idHuesp = "";
+		this.nomMedicamento = "";
 		this.cantidad = 0;
-		this.descMedicamento = "";
-		this.dosisMat = 0;
-		this.dosisVesp = 0;
-		this.dosisNoct = 0;
-		this.fechaActualizacion = new SimpleDateFormat();
-		this.enfermero = "";
+		this.fecAct = LocalDateTime.of(0,1,1,0,0,0);
+		this.conMat = 0;
+		this.conVesp = 0;
+		this.conNoct = 0;
+		this.numEv = 0;
+		this.nomEnfermero = "";
 	}
-
-	public Medicamento(int idMedicamento, int cantidad, String descMedicamento, int dosisMat, int dosisVesp, int dosisNoct, SimpleDateFormat fechaActualizacion, String enfermero) {
+	
+	//Constructor sin evento
+	public Medicamento(String idHuesp, String nomMedicamento, int cantidad, LocalDateTime fecAct, int conMat,
+			int conVesp, int conNoct, int conTot, String nomEnfermero) {
 		super();
-		this.idMedicamento = idMedicamento;
+		this.idHuesp = idHuesp;
+		this.nomMedicamento = nomMedicamento;
 		this.cantidad = cantidad;
-		this.descMedicamento = descMedicamento;
-		this.dosisMat = dosisMat;
-		this.dosisVesp = dosisVesp;
-		this.dosisNoct = dosisNoct;
-		this.fechaActualizacion = fechaActualizacion;
-		this.enfermero = enfermero;
+		this.fecAct = fecAct;
+		this.conMat = conMat;
+		this.conVesp = conVesp;
+		this.conNoct = conNoct;
+		this.numEv = 0;
+		this.nomEnfermero = nomEnfermero;
 	}
 
-	public int getIdMedicamento() {
-		return idMedicamento;
+	//Constructor con evento
+	public Medicamento(String idHuesp, String nomMedicamento, int cantidad, LocalDateTime fecAct, int conMat,
+			int conVesp, int conNoct, int conTot, int numEv, String nomEnfermero) {
+		super();
+		this.idHuesp = idHuesp;
+		this.nomMedicamento = nomMedicamento;
+		this.cantidad = cantidad;
+		this.fecAct = fecAct;
+		this.conMat = conMat;
+		this.conVesp = conVesp;
+		this.conNoct = conNoct;
+		this.numEv = numEv;
+		this.nomEnfermero = nomEnfermero;
 	}
 
-	public void setIdMedicamento(int idMedicamento) {
-		this.idMedicamento = idMedicamento;
+	public String getIdHuesp() {
+		return idHuesp;
+	}
+
+	public void setIdHuesp(String idHuesp) {
+		this.idHuesp = idHuesp;
+	}
+
+	public String getNomMedicamento() {
+		return nomMedicamento;
+	}
+
+	public void setNomMedicamento(String nomMedicamento) {
+		this.nomMedicamento = nomMedicamento;
 	}
 
 	public int getCantidad() {
@@ -50,56 +80,55 @@ public class Medicamento {
 		this.cantidad = cantidad;
 	}
 
-	public String getDescMedicamento() {
-		return descMedicamento;
+	public LocalDateTime getFecAct() {
+		return fecAct;
 	}
 
-	public void setDescMedicamento(String descMedicamento) {
-		this.descMedicamento = descMedicamento;
+	public void setFecAct(LocalDateTime fecAct) {
+		this.fecAct = fecAct;
 	}
 
-	public int getDosisMat() {
-		return dosisMat;
+	public int getConMat() {
+		return conMat;
 	}
 
-	public void setDosisMat(int dosisMat) {
-		this.dosisMat = dosisMat;
+	public void setConMat(int conMat) {
+		this.conMat = conMat;
 	}
 
-	public int getDosisVesp() {
-		return dosisVesp;
+	public int getConVesp() {
+		return conVesp;
 	}
 
-	public void setDosisVesp(int dosisVesp) {
-		this.dosisVesp = dosisVesp;
+	public void setConVesp(int conVesp) {
+		this.conVesp = conVesp;
 	}
 
-	public int getDosisNoct() {
-		return dosisNoct;
+	public int getConNoct() {
+		return conNoct;
 	}
 
-	public void setDosisNoct(int dosisNoct) {
-		this.dosisNoct = dosisNoct;
+	public void setConNoct(int conNoct) {
+		this.conNoct = conNoct;
 	}
 
-	public SimpleDateFormat getFechaActualizacion() {
-		return fechaActualizacion;
+	public int getNumEv() {
+		return numEv;
 	}
 
-	public void setFechaActualizacion(SimpleDateFormat fechaActualizacion) {
-		this.fechaActualizacion = fechaActualizacion;
+	public void setNumEv(int numEv) {
+		this.numEv = numEv;
+	}
+
+	public String getNomEnfermero() {
+		return nomEnfermero;
+	}
+
+	public void setNomEnfermero(String nomEnfermero) {
+		this.nomEnfermero = nomEnfermero;
 	}
 	
-	public String getEnfermero() {
-		return enfermero;
+	public int calcConsumo() {
+		return conMat + conVesp + conNoct;
 	}
-
-	public void setEnfermero(String enfermero) {
-		this.enfermero = enfermero;
-	}
-	
-	public int getDosisDiaria() {
-		return dosisMat + dosisVesp + dosisNoct;
-	}
-
 }

@@ -1,48 +1,63 @@
 package clases;
-import java.text.*;
+
+import java.time.LocalDate;
 
 public class Huesped {
 	//Atributos de la clase
 	private String curp;
-	private String status;
-	private String nombres;
-	private String apellidos;
-	private SimpleDateFormat fechaNacimiento;
+	private String primNombre;
+	private String segNombre;
+	private String primApellido;
+	private String segApellido;
+	private LocalDate fecNac;
 	private char sexo;
-	private String fotografia;
-	private SimpleDateFormat fechaIngreso;
-	private String descPadecimientos;
+	private String foto;
+	private LocalDate fecIng;
+	private String status;
 	private int numCuarto;
 	private int numCama;
-	
+	private String descPad;
+
+	//Constructor vacio
 	public Huesped() {
+		super();
 		this.curp = "";
-		this.status = "";
-		this.nombres = "";
-		this.apellidos = "";
-		this.fechaNacimiento = new SimpleDateFormat();
+		this.primNombre = "";
+		this.segNombre = "";
+		this.primNombre = "";
+		this.segNombre = "";
+		this.fecNac = LocalDate.of(0,1,1);
 		this.sexo = 0;
-		this.fotografia = "";
-		this.fechaIngreso = new SimpleDateFormat();
-		this.descPadecimientos = "";
+		this.foto = "";
+		this.fecIng = LocalDate.of(0,1,1);
+		this.status = "";
 		this.numCuarto = 0;
 		this.numCama = 0;
+		this.descPad = "";
 	}
 	
-	public Huesped(String curp, String status, String nombres, String apellidos, SimpleDateFormat fechaNacimiento, char sexo, String fotografia, SimpleDateFormat fechaIngreso, String descPadecimientos, int numCuarto, int numCama) {
+	//Constructor con parametros
+	public Huesped(String curp, String primNombre, String segNombre, String primApellido,
+			String segApellido, LocalDate fecNac, char sexo, String foto, LocalDate fecIng,
+			String status, int numCuarto, int numCama, String descPad) {
+		super();
 		this.curp = curp;
-		this.status = status;
-		this.nombres = nombres;
-		this.apellidos = apellidos;
-		this.fechaNacimiento = fechaNacimiento;
+		this.primNombre = primNombre;
+		this.segNombre = segNombre;
+		this.primApellido = primApellido;
+		this.primApellido = segApellido;
+		this.fecNac = fecNac;
 		this.sexo = sexo;
-		this.fotografia = fotografia;
-		this.fechaIngreso = fechaIngreso;
-		this.descPadecimientos = descPadecimientos;
+		this.foto= foto;
+		this.fecIng = fecIng;
+		this.status = status;
 		this.numCuarto = numCuarto;
 		this.numCama = numCama;
+		this.descPad = descPad;
 	}
-
+	
+	
+	//Metodos get y set
 	public String getCurp() {
 		return curp;
 	}
@@ -51,36 +66,44 @@ public class Huesped {
 		this.curp = curp;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getPrimNombre() {
+		return primNombre;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPrimNombre(String primNombre) {
+		this.primNombre = primNombre;
 	}
 
-	public String getNombres() {
-		return nombres;
+	public String getSegNombre() {
+		return segNombre;
 	}
 
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
+	public void setSegNombre(String segNombre) {
+		this.segNombre = segNombre;
 	}
 
-	public String getApellidos() {
-		return apellidos;
+	public String getPrimApellido() {
+		return primApellido;
 	}
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setPrimApellido(String primApellido) {
+		this.primApellido = primApellido;
 	}
 
-	public SimpleDateFormat getFechaNacimiento() {
-		return fechaNacimiento;
+	public String getSegApellido() {
+		return segApellido;
 	}
 
-	public void setFechaNacimiento(SimpleDateFormat fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setSegApellido(String segApellido) {
+		this.segApellido = segApellido;
+	}
+
+	public LocalDate getFecNac() {
+		return fecNac;
+	}
+
+	public void setFecNac(LocalDate fecNac) {
+		this.fecNac = fecNac;
 	}
 
 	public char getSexo() {
@@ -91,28 +114,28 @@ public class Huesped {
 		this.sexo = sexo;
 	}
 
-	public String getFotografia() {
-		return fotografia;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setFotografia(String fotografia) {
-		this.fotografia = fotografia;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
-	public SimpleDateFormat getFechaIngreso() {
-		return fechaIngreso;
+	public LocalDate getFecIng() {
+		return fecIng;
 	}
 
-	public void setFechaIngreso(SimpleDateFormat fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
+	public void setFecIng(LocalDate fecIng) {
+		this.fecIng = fecIng;
 	}
 
-	public String getDescPadecimientos() {
-		return descPadecimientos;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setDescPadecimientos(String descPadecimientos) {
-		this.descPadecimientos = descPadecimientos;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public int getNumCuarto() {
@@ -131,20 +154,12 @@ public class Huesped {
 		this.numCama = numCama;
 	}
 
-	public String fechaNacimientotoString() {
-		
-		return fechaNacimiento.toPattern();
+	public String getDescPad() {
+		return descPad;
 	}
-	
-	public String fechaIngresotoString() {
-		return fechaIngreso.toPattern();
+
+	public void setDescPad(String descPad) {
+		this.descPad = descPad;
 	}
-	
-	public String numCuartotoString() {
-		return Integer.toString(numCuarto);
-	}
-	
-	public String numCamatoString() {
-		return Integer.toString(numCama);
-	}
+
 }
