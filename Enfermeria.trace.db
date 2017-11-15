@@ -1,0 +1,79 @@
+11-15 14:59:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "PRIMAMPELLIDO" not found; SQL statement:
+UPDATE Huesped SET primNombre = Daniel, segNombre = Arturo, primAmpellido = Lopez, segApellido = null, fecNac = 1990-01-12, sexo =m, foto = link.com, fecIng = 2017-11-10, status = Activo, numCuarto = 12, numCama = 4, descPad = Padece un osito WHERE curp = ucuniwu928392; [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.table.Table.getColumn(Table.java:637)
+	at org.h2.command.Parser.readTableColumn(Parser.java:700)
+	at org.h2.command.Parser.parseUpdate(Parser.java:734)
+	at org.h2.command.Parser.parsePrepared(Parser.java:456)
+	at org.h2.command.Parser.parse(Parser.java:306)
+	at org.h2.command.Parser.parse(Parser.java:278)
+	at org.h2.command.Parser.prepareCommand(Parser.java:243)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:128)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:117)
+	at modelos.HuespedBean.update(HuespedBean.java:96)
+	at application.Main.main(Main.java:25)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:389)
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:328)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.launcher.LauncherHelper$FXHelper.main(Unknown Source)
+11-15 15:05:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TABLE" not found; SQL statement:
+INSERT INTO TABLE Huesped((curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama. descPad)VALUES (ucuniwu928392, Daniel, Arturo, Lopez, null, 1990-01-12, m, link.com, 2017-11-10, Activo, 12, 4, Padece un osito); [42102-176]
+11-15 15:06:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE HUESPED IF[*] NOT EXISTS(CURP VARCHAR(20),PRIMNOMBRE VARCHAR(20),SEGNOMBRE VARCHAR(20),PRIMAPELLIDO VARCHAR(20),SEGAPELLIDO VARCHAR(20),FECNAC DATE,SEXO CHAR,FOTO VARCHAR(200),FECING DATE,STATUS VARCHAR(20),NUMCUARTO INT,NUMCAMA INT,DESCPAD VARCHAR(500),CONSTRAINT PK_HUESPED PRIMARY KEY (CURP)); "; SQL statement:
+CREATE TABLE Huesped IF NOT EXISTS(curp varchar(20),primNombre varchar(20),segNombre varchar(20),primApellido varchar(20),segApellido varchar(20),fecNac Date,sexo Char,foto varchar(200),fecIng Date,status varchar(20),numCuarto int,numCama int,descPad varchar(500),CONSTRAINT PK_Huesped PRIMARY KEY (curp)); [42000-176]
+11-15 15:06:23 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "TABLE" not found; SQL statement:
+INSERT INTO TABLE Huesped((curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama. descPad)VALUES (ucuniwu928392, Daniel, Arturo, Lopez, null, 1990-01-12, m, link.com, 2017-11-10, Activo, 12, 4, Padece un osito); [42102-176]
+11-15 15:12:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TABLE" not found; SQL statement:
+INSERT INTO TABLE Huesped((curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama. descPad)VALUES (ucuniwu928392, Daniel, Arturo, Lopez, null, 1990-01-12, m, link.com, 2017-11-10, Activo, 12, 4, Padece un osito); [42102-176]
+11-15 15:13:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO HUESPED(([*]CURP, PRIMNOMBRE, SEGNOMBRE, PRIMAPELLIDO, SEGAPELLIDO, FECNAC, SEXO, FOTO, FECING, STATUS, NUMCUARTO, NUMCAMA. DESCPAD)VALUES (UCUNIWU928392, DANIEL, ARTURO, LOPEZ, NULL, 1990-01-12, M, LINK.COM, 2017-11-10, ACTIVO, 12, 4, PADECE UN OSITO); "; expected "identifier"; SQL statement:
+INSERT INTO Huesped((curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama. descPad)VALUES (ucuniwu928392, Daniel, Arturo, Lopez, null, 1990-01-12, m, link.com, 2017-11-10, Activo, 12, 4, Padece un osito); [42001-176]
+11-15 15:17:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO HUESPED(CURP, PRIMNOMBRE, SEGNOMBRE, PRIMAPELLIDO, SEGAPELLIDO, FECNAC, SEXO, FOTO, FECING, STATUS, NUMCUARTO, NUMCAMA.[*] DESCPAD)VALUES (UCUNIWU928392, DANIEL, ARTURO, LOPEZ, NULL, 1990-01-12, M, LINK.COM, 2017-11-10, ACTIVO, 12, 4, PADECE UN OSITO); "; expected ",, )"; SQL statement:
+INSERT INTO Huesped(curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama. descPad)VALUES (ucuniwu928392, Daniel, Arturo, Lopez, null, 1990-01-12, m, link.com, 2017-11-10, Activo, 12, 4, Padece un osito); [42001-176]
+11-15 15:19:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO HUESPED(CURP, PRIMNOMBRE, SEGNOMBRE, PRIMAPELLIDO, SEGAPELLIDO, FECNAC, SEXO, FOTO, FECING, STATUS, NUMCUARTO, NUMCAMA, DESCPAD)VALUES (UCUNIWU928392, DANIEL, ARTURO, LOPEZ, NULL, 1990-01-12, M, LINK.COM, 2017-11-10, ACTIVO, 12, 4, PADECE UN[*] OSITO); "; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO Huesped(curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama, descPad)VALUES (ucuniwu928392, Daniel, Arturo, Lopez, null, 1990-01-12, m, link.com, 2017-11-10, Activo, 12, 4, Padece un osito); [42001-176]
+11-15 15:21:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "UCUNIWU928392" not found; SQL statement:
+INSERT INTO Huesped(curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama, descPad)VALUES (ucuniwu928392, Daniel, Arturo, Lopez, null, 1990-01-12, m, link.com, 2017-11-10, Activo, 12, 4, Padece); [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:148)
+	at org.h2.command.dml.Insert.prepare(Insert.java:271)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:128)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:117)
+	at modelos.HuespedBean.create(HuespedBean.java:68)
+	at application.Main.main(Main.java:25)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:389)
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:328)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.launcher.LauncherHelper$FXHelper.main(Unknown Source)

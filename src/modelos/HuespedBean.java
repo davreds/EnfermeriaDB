@@ -15,17 +15,14 @@ public class HuespedBean {
 	static final String DB_URL = "jdbc:h2:~/Enfermeria";
 	static final String DB_USER = "encarnados";
 	static final String DB_PASS = "amss";
-	private ResultSet rs = null;
-	private Connection c = null;
-	private Statement st = null;
 
 	//Constructor
 	public HuespedBean() {
 		try {
 			Class.forName(JDBC_Driver);
-			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-			st = c.createStatement();
-			String sql = "CREATE TABLE IF DOESN'T EXIST Huesped" + 
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
+			String sql = "CREATE TABLE IF NOT EXISTS Huesped" + 
 					"(curp varchar(20)," + 
 					"primNombre varchar(20)," + 
 					"segNombre varchar(20)," + 
@@ -40,7 +37,7 @@ public class HuespedBean {
 					"numCama int," + 
 					"descPad varchar(500)," + 
 					"CONSTRAINT PK_Huesped PRIMARY KEY (curp));";
-			st.executeQuery(sql);
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException | ClassNotFoundException ex) {
@@ -51,24 +48,24 @@ public class HuespedBean {
 	//Agregar Huesped a la BD
 	public Huesped create(Huesped h) {
 		try {
-			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-			st = c.createStatement();
-			String sql = "INSERT INTO TABLE Huesped("
-					+ "(curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama. descPad)"
-					+ "VALUES (" + h.getCurp()
-					+ ", " + h.getPrimNombre()
-					+ ", " + h.getSegNombre()
-					+ ", " + h.getPrimApellido()
-					+ ", " + h.getSegApellido()
-					+ ", " + h.getFecNac().toString()
-					+ ", " + h.getSexo()
-					+ ", " + h.getFoto()
-					+ ", " + h.getFecIng().toString()
-					+ ", " + h.getStatus()
-					+ ", " + h.getNumCuarto()
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
+			String sql = "INSERT INTO Huesped"
+					+ "(curp, primNombre, segNombre, primApellido, segApellido, fecNac, sexo, foto, fecIng, status, numCuarto, numCama, descPad)"
+					+ "VALUES ('" + h.getCurp()
+					+ "', '" + h.getPrimNombre()
+					+ "', '" + h.getSegNombre()
+					+ "', '" + h.getPrimApellido()
+					+ "', '" + h.getSegApellido()
+					+ "', '" + h.getFecNac().toString()
+					+ "', '" + h.getSexo()
+					+ "', '" + h.getFoto()
+					+ "', '" + h.getFecIng().toString()
+					+ "', '" + h.getStatus()
+					+ "', " + h.getNumCuarto()
 					+ ", " + h.getNumCama()
-					+ ", " + h.getDescPad() + ");";
-			st.executeQuery(sql);
+					+ ", '" + h.getDescPad() + "');";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex){
@@ -80,23 +77,23 @@ public class HuespedBean {
 	//Modificar Huesped en la BD
 	public Huesped update(Huesped h) {
 		try {
-			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-			st = c.createStatement();
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
 			String sql = "UPDATE Huesped SET "
-					+ "primNombre = " + h.getPrimNombre()
-					+ ", segNombre = " + h.getSegNombre()
-					+ ", primAmpellido = " + h.getPrimApellido()
-					+ ", segApellido = " + h.getSegApellido()
-					+ ", fecNac = " + h.getFecNac().toString()
-					+ ", sexo =" + h.getSexo()
-					+ ", foto = " + h.getFoto()
-					+ ", fecIng = " + h.getFecIng().toString()
-					+ ", status = " + h.getStatus()
-					+ ", numCuarto = " + h.getNumCuarto()
+					+ "primNombre = '" + h.getPrimNombre()
+					+ "', segNombre = '" + h.getSegNombre()
+					+ "', primApellido = '" + h.getPrimApellido()
+					+ "', segApellido = '" + h.getSegApellido()
+					+ "', fecNac = '" + h.getFecNac().toString()
+					+ "', sexo = '" + h.getSexo()
+					+ "', foto = '" + h.getFoto()
+					+ "', fecIng = '" + h.getFecIng().toString()
+					+ "', status = '" + h.getStatus()
+					+ "', numCuarto = " + h.getNumCuarto()
 					+ ", numCama = " + h.getNumCama()
-					+ ", descPad = " + h.getDescPad()
-					+ " WHERE curp = " + h.getCurp() + ";";
-			st.executeQuery(sql);
+					+ ", descPad = '" + h.getDescPad()
+					+ "' WHERE curp = '" + h.getCurp() + "';";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex) {
@@ -110,9 +107,9 @@ public class HuespedBean {
 		Huesped h = new Huesped();
 		h.setCurp(curp);
 		try {
-			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-			st = c.createStatement();
-			rs = st.executeQuery("SELECT * FROM Huesped WHERE curp = " + curp + ";");
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM Huesped WHERE curp = " + curp + ";");
 			h.setPrimNombre(rs.getString("primerNombre"));
 			h.setSegNombre(rs.getString("segundoNombre"));
 			h.setPrimApellido(rs.getString("primApellido"));
@@ -137,11 +134,11 @@ public class HuespedBean {
 	//Borrar Huesped de la BD
 	public void delete(Huesped h) {
 		try {
-			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-			st = c.createStatement();
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
 			String sql = "DELETE FROM Huesped"
-					+ "WHERE curp = " + h.getCurp() + ";";
-			st.executeQuery(sql);
+					+ " WHERE curp = '" + h.getCurp() + "';";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex) {

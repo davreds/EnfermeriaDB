@@ -25,7 +25,7 @@ public class MedicamentoBean {
 			Class.forName(JDBC_Driver);
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
-			String sql = "CREATE TABLE IF DOESN'T EXIST Medicamento" + 
+			String sql = "CREATE TABLE IF NOT EXISTS Medicamento" + 
 					"(idHuesp varchar(20), " + 
 					"nomMedicamento varchar(50), " + 
 					"cantidad int, " + 
@@ -39,7 +39,7 @@ public class MedicamentoBean {
 					"CONSTRAINT FK_EventoMed FOREIGN KEY (numEV) REFERENCES Evento(numEvento), " + 
 					"CONSTRAINT FK_HuespMed FOREIGN KEY (idHuesp) REFERENCES Huesped(curp) On Delete Cascade, " + 
 					"CONSTRAINT PK_Medicamento PRIMARY KEY (idHuesp, nomMedicamento));";
-			st.executeQuery(sql);
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException | ClassNotFoundException ex) {
@@ -54,17 +54,17 @@ public class MedicamentoBean {
 			st = c.createStatement();
 			String sql = "INSERT INTO TABLE Medicamento("
 					+ "(idHuesp, nomMedicamento, cantidad, fecAct, conMat, conVesp, conNoct, conTot, numEv, nomEnfermero)"
-					+ "VALUES (" + m.getIdHuesp()
-					+ ", " + m.getNomMedicamento()
-					+ ", " + m.getCantidad()
-					+ ", " + toTimestamp(m.getFecAct())
-					+ ", " + m.getConMat()
+					+ "VALUES ('" + m.getIdHuesp()
+					+ "', '" + m.getNomMedicamento()
+					+ "', " + m.getCantidad()
+					+ ", '" + toTimestamp(m.getFecAct())
+					+ "', " + m.getConMat()
 					+ ", " + m.getConVesp()
 					+ ", " + m.getConNoct()
 					+ ", " + m.calcConsumo()
 					+ ", " + m.getNumEv()
-					+ ", " + m.getNomEnfermero() + ";";
-			st.executeQuery(sql);
+					+ ", '" + m.getNomEnfermero() + "';";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex){
@@ -80,15 +80,15 @@ public class MedicamentoBean {
 			st = c.createStatement();
 			String sql = "UPDATE Medicamento SET "
 					+ "cantidad = " + m.getCantidad()
-					+ ", fecAct = " + toTimestamp(m.getFecAct())
-					+ ", conMat = " + m.getConMat()
+					+ ", fecAct = '" + toTimestamp(m.getFecAct())
+					+ "', conMat = " + m.getConMat()
 					+ ", conVesp = " + m.getConVesp()
 					+ ", conNoct = " + m.getConNoct()
 					+ ", conTot = " + m.calcConsumo()
 					+ ", numEv = " + m.getNumEv()
-					+ ", nomEnfermero = " + m.getNomEnfermero()
-					+ "WHERE idHuesp = " + m.getIdHuesp() + " AND nomMedicamento = " + m.getNomMedicamento() + ";";
-			st.executeQuery(sql);
+					+ ", nomEnfermero = '" + m.getNomEnfermero()
+					+ "' WHERE idHuesp = '" + m.getIdHuesp() + "' AND nomMedicamento = '" + m.getNomMedicamento() + "';";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex) {
@@ -105,8 +105,8 @@ public class MedicamentoBean {
 		try {
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
-			rs = st.executeQuery("SELECT * FROM Medicamento WHERE idHuesp = " + idHuesp	
-					+ " AND nomMedicamento = " + nomMedicamento + ";");
+			rs = st.executeQuery("SELECT * FROM Medicamento WHERE idHuesp = '" + idHuesp	
+					+ "' AND nomMedicamento = '" + nomMedicamento + "';");
 			m.setCantidad(rs.getInt("cantidad"));
 			m.setFecAct(toLocalDateTime(rs.getString("fecAct")));
 			m.setConMat(rs.getInt("conMat"));
@@ -129,8 +129,8 @@ public class MedicamentoBean {
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
 			String sql = "DELETE FROM Medicamento"
-					+ "WHERE idHuesp = " + m.getIdHuesp() + " AND nomMedicamento = " + m.getNomMedicamento() + ";";
-			st.executeQuery(sql);
+					+ " WHERE idHuesp = '" + m.getIdHuesp() + "' AND nomMedicamento = '" + m.getNomMedicamento() + "';";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex) {

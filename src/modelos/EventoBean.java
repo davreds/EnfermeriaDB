@@ -25,7 +25,7 @@ public class EventoBean {
 			Class.forName(JDBC_Driver);
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
-			String sql = "CREATE TABLE IF DOESN'T EXIST Evento" + 
+			String sql = "CREATE TABLE IF NOT EXISTS Evento" + 
 					"(idHuesp varchar(20), " +
 					"numEvento int, " + 
 					"tipoEvento varchar(10), " + 
@@ -36,7 +36,7 @@ public class EventoBean {
 					"dirReceta varchar(200), " + 
 					"CONSTRAINT FK_HuespEvento FOREIGN KEY (idHuesp) REFERENCES Huesped(curp) On Delete Cascade, " + 
 					"CONSTRAINT PK_Evento PRIMARY KEY (idHuesp, numEvento));";
-			st.executeQuery(sql);
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException | ClassNotFoundException ex) {
@@ -51,15 +51,15 @@ public class EventoBean {
 			st = c.createStatement();
 			String sql = "INSERT INTO TABLE Evento("
 					+ "(idHuesp, numEvento, tipoEvento, fecReg, descEvento, nomEnfermero, bReceta, dirReceta)"
-					+ "VALUES (" + ev.getIdHuesp()
-					+ ", " + ev.getNumEvento()
-					+ ", " + ev.getTipoEvento()
-					+ ", " + toTimestamp(ev.getFecReg())
-					+ ", " + ev.getDescEvento()
-					+ ", " + ev.getNomEnfermero()
-					+ ", " + ev.hasReceta()
-					+ ", " + ev.getDirReceta() + ";";
-			st.executeQuery(sql);
+					+ "VALUES ('" + ev.getIdHuesp()
+					+ "', " + ev.getNumEvento()
+					+ ", '" + ev.getTipoEvento()
+					+ "', '" + toTimestamp(ev.getFecReg())
+					+ "', '" + ev.getDescEvento()
+					+ "', '" + ev.getNomEnfermero()
+					+ "', '" + ev.hasReceta()
+					+ "', '" + ev.getDirReceta() + "';";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex){
@@ -74,14 +74,14 @@ public class EventoBean {
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
 			String sql = "UPDATE Evento SET "
-					+ "tipoEvento = " + ev.getTipoEvento()
-					+ ", fecReg = " + toTimestamp(ev.getFecReg())
-					+ ", descEvento = " + ev.getDescEvento()
-					+ ", nomEnfermero" + ev.getNomEnfermero()
-					+ ", bReceta = " + ev.hasReceta()
-					+ ", dirReceta = " + ev.getDirReceta() 
-					+ "WHERE idHuesp = " + ev.getIdHuesp() + " AND numEvento = " + ev.getNumEvento() + ";";
-			st.executeQuery(sql);
+					+ "tipoEvento = '" + ev.getTipoEvento()
+					+ "', fecReg = '" + toTimestamp(ev.getFecReg())
+					+ "', descEvento = '" + ev.getDescEvento()
+					+ "', nomEnfermero = '" + ev.getNomEnfermero()
+					+ "', bReceta = '" + ev.hasReceta()
+					+ "', dirReceta = '" + ev.getDirReceta() 
+					+ "' WHERE idHuesp = '" + ev.getIdHuesp() + "' AND numEvento = " + ev.getNumEvento() + ";";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex) {
@@ -98,8 +98,8 @@ public class EventoBean {
 		try {
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
-			rs = st.executeQuery("SELECT * FROM Evento WHERE idHuesp = " + idHuesp	
-					+ " AND numEvento = " + numEvento + ";");
+			rs = st.executeQuery("SELECT * FROM Evento WHERE idHuesp = '" + idHuesp	
+					+ "' AND numEvento = " + numEvento + ";");
 			ev.setTipoEvento(rs.getString("tipoEvento"));
 			ev.setFecReg(toLocalDateTime(rs.getString("fecReg")));
 			ev.setDescEvento(rs.getString("descEvento"));
@@ -120,8 +120,8 @@ public class EventoBean {
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
 			String sql = "DELETE FROM Evento"
-					+ "WHERE idHuesp = " + ev.getIdHuesp() + " AND numEvento = " + ev.getNumEvento() + ";";
-			st.executeQuery(sql);
+					+ " WHERE idHuesp = '" + ev.getIdHuesp() + "' AND numEvento = " + ev.getNumEvento() + ";";
+			st.executeUpdate(sql);
 			st.close();
 			c.close();
 		} catch (SQLException ex) {

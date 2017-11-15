@@ -45,7 +45,7 @@ public class Huesped {
 		this.primNombre = primNombre;
 		this.segNombre = segNombre;
 		this.primApellido = primApellido;
-		this.primApellido = segApellido;
+		this.segApellido = segApellido;
 		this.fecNac = fecNac;
 		this.sexo = sexo;
 		this.foto= foto;
