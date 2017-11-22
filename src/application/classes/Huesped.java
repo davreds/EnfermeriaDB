@@ -1,4 +1,4 @@
-package clases;
+package application.classes;
 
 import java.time.LocalDate;
 
@@ -161,5 +161,18 @@ public class Huesped {
 	public void setDescPad(String descPad) {
 		this.descPad = descPad;
 	}
-
+	
+	public String nomCompleto() {
+		String nom = primNombre +  " ";
+		if(segNombre != "") {
+			nom += segNombre;
+			nom += " ";
+		}
+		nom += primApellido;
+		if(segApellido != "") {
+			nom += " ";
+			nom += segApellido;
+		}
+		return nom;
+	}
 }

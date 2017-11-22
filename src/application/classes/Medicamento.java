@@ -1,4 +1,4 @@
-package clases;
+	package application.classes;
 import java.time.LocalDateTime;
 
 public class Medicamento {
@@ -10,8 +10,6 @@ public class Medicamento {
 	private int conMat;
 	private int conVesp;
 	private int conNoct;
-	private int numEv;
-	private String nomEnfermero;
 	
 	//Constructor vacio
 	public Medicamento() {
@@ -22,13 +20,11 @@ public class Medicamento {
 		this.conMat = 0;
 		this.conVesp = 0;
 		this.conNoct = 0;
-		this.numEv = 0;
-		this.nomEnfermero = "";
 	}
 	
 	//Constructor sin evento
 	public Medicamento(String idHuesp, String nomMedicamento, int cantidad, LocalDateTime fecAct, int conMat,
-			int conVesp, int conNoct, int conTot, String nomEnfermero) {
+			int conVesp, int conNoct, int conTot) {
 		super();
 		this.idHuesp = idHuesp;
 		this.nomMedicamento = nomMedicamento;
@@ -37,8 +33,6 @@ public class Medicamento {
 		this.conMat = conMat;
 		this.conVesp = conVesp;
 		this.conNoct = conNoct;
-		this.numEv = 0;
-		this.nomEnfermero = nomEnfermero;
 	}
 
 	//Constructor con evento
@@ -52,8 +46,6 @@ public class Medicamento {
 		this.conMat = conMat;
 		this.conVesp = conVesp;
 		this.conNoct = conNoct;
-		this.numEv = numEv;
-		this.nomEnfermero = nomEnfermero;
 	}
 
 	public String getIdHuesp() {
@@ -112,23 +104,12 @@ public class Medicamento {
 		this.conNoct = conNoct;
 	}
 
-	public int getNumEv() {
-		return numEv;
-	}
-
-	public void setNumEv(int numEv) {
-		this.numEv = numEv;
-	}
-
-	public String getNomEnfermero() {
-		return nomEnfermero;
-	}
-
-	public void setNomEnfermero(String nomEnfermero) {
-		this.nomEnfermero = nomEnfermero;
-	}
-	
 	public int calcConsumo() {
 		return conMat + conVesp + conNoct;
+	}
+	
+	public boolean availability(LocalDateTime date) {
+		int days = (date.getYear() - fecAct.getYear())*365 +(date.getDayOfYear() - fecAct.getDayOfYear());
+		return (cantidad > days*calcConsumo());
 	}
 }

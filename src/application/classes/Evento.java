@@ -1,4 +1,4 @@
-package clases;
+package application.classes;
 
 import java.time.LocalDateTime;
 
@@ -6,7 +6,6 @@ public class Evento {
 	//Atributos de la clase
 	private String idHuesp;
 	private int numEvento;
-	private String tipoEvento;
 	private LocalDateTime fecReg;
 	private String descEvento;
 	private String nomEnfermero;
@@ -18,7 +17,6 @@ public class Evento {
 		super();
 		this.idHuesp = "";
 		this.numEvento = 0;
-		this.tipoEvento = "";
 		this.fecReg = LocalDateTime.of(0, 1, 1, 0, 0, 0);
 		this.descEvento = "";
 		this.nomEnfermero = "";
@@ -27,12 +25,10 @@ public class Evento {
 	}
 	
 	//Constructor con parametros
-	public Evento(String idHuesp, int numEvento, String tipoEvento, LocalDateTime fecReg, String descEvento,
-			String enfermero, String dirReceta) {
+	public Evento(String idHuesp, int numEvento, String descEvento, LocalDateTime fecReg, String enfermero, String dirReceta) {
 		super();
 		this.idHuesp = idHuesp;
 		this.numEvento = numEvento;
-		this.tipoEvento = tipoEvento;
 		this.fecReg = fecReg;
 		this.descEvento = descEvento;
 		this.nomEnfermero = enfermero;
@@ -55,14 +51,6 @@ public class Evento {
 
 	public void setNumEvento(int numEvento) {
 		this.numEvento = numEvento;
-	}
-
-	public String getTipoEvento() {
-		return tipoEvento;
-	}
-
-	public void setTipoEvento(String tipoEvento) {
-		this.tipoEvento = tipoEvento;
 	}
 
 	public LocalDateTime getFecReg() {

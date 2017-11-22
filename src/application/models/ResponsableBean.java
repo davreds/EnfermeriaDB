@@ -1,12 +1,13 @@
-package modelos;
+package application.models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 
-import clases.Responsable;
+import application.classes.Responsable;
 
 public class ResponsableBean {
 	//Parametros conexion BD
@@ -40,7 +41,7 @@ public class ResponsableBean {
 		try {
 			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			Statement st = c.createStatement();
-			String sql = "INSERT INTO TABLE Huesped("
+			String sql = "INSERT INTO Huesped"
 					+ "(idHuesp, nomCompleto, telefono)"
 					+ "VALUES ('" + r.getIdHuesp()
 					+ "', '" + r.getNomCompleto()
@@ -78,7 +79,7 @@ public class ResponsableBean {
 		try {
 			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			Statement st = c.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM Responsable"
+			ResultSet rs = st.executeQuery("SELECT * FROM Responsable "
 					+ "WHERE idHuesp = '" + idHuesp + "' AND nomCompleto = '" + nomCompleto + "';");
 			r.setTelefono(rs.getString("telefono"));
 			rs.close();
@@ -103,5 +104,29 @@ public class ResponsableBean {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	//Buscar responsables
+	public LinkedList<Responsable> search(String idHuesp){
+		LinkedList<Responsable> lr = new LinkedList<Responsable>();
+		try {
+			Responsable temp = new Responsable();
+			temp.setIdHuesp(idHuesp);
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM Responsable "
+					+ "WHERE idHuesp = '" + idHuesp + "';");
+			while(rs.next()) {
+				temp.setNomCompleto(rs.getString("nomCompleto"));
+				temp.setTelefono(rs.getString("telefono"));
+				lr.addLast(temp);
+			}
+			rs.close();
+			st.close();
+			c.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return lr;
 	}
 }

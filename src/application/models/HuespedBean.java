@@ -1,4 +1,4 @@
-package modelos;
+package application.models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.LinkedList;
 
-import clases.Huesped;
+import application.classes.Huesped;
 
 public class HuespedBean {
 	//Parametros conexion BD
@@ -109,9 +110,9 @@ public class HuespedBean {
 		try {
 			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			Statement st = c.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM Huesped WHERE curp = " + curp + ";");
-			h.setPrimNombre(rs.getString("primerNombre"));
-			h.setSegNombre(rs.getString("segundoNombre"));
+			ResultSet rs = st.executeQuery("SELECT * FROM Huesped WHERE curp = '" + curp + "';");
+			h.setPrimNombre(rs.getString("primNombre"));
+			h.setSegNombre(rs.getString("segNombre"));
 			h.setPrimApellido(rs.getString("primApellido"));
 			h.setSegApellido(rs.getString("segApellido"));
 			h.setFecNac(LocalDate.parse(rs.getString("fecNac")));
@@ -145,4 +146,49 @@ public class HuespedBean {
 			ex.printStackTrace();
 		}
 	}
+	
+	//Busca todos los huespedes que cumplen con una condicion de busqueda
+	public LinkedList<Huesped> search(String dato){
+		LinkedList<Huesped> ll = new LinkedList<>();
+		try {
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * "
+					+ "FROM Huesped "
+					+ "WHERE primNombre like '%" + dato + "%' "
+					+ "OR segNombre like '%" + dato + "%' "
+					+ "OR primApellido like '%" + dato + "%'"
+					+ "OR segApellido like '%" + dato + "%';");
+			Huesped temp = new Huesped();
+			while(rs.next()) {
+				temp.setCurp(rs.getString("curp"));
+				temp.setPrimNombre(rs.getString("primNombre"));
+				temp.setSegNombre(rs.getString("segNombre"));
+				temp.setPrimApellido(rs.getString("primApellido"));
+				temp.setSegApellido(rs.getString("segApellido"));
+				temp.setFecNac(LocalDate.parse(rs.getString("fecNac")));
+				temp.setSexo(rs.getString("sexo").charAt(0));
+				temp.setFoto(rs.getString("foto"));
+				temp.setFecIng(LocalDate.parse(rs.getString("fecIng")));
+				temp.setStatus(rs.getString("status"));
+				temp.setNumCuarto(rs.getInt("numCuarto"));
+				temp.setNumCama(rs.getInt("numCama"));
+				temp.setDescPad(rs.getString("descPad"));
+				ll.addLast(temp);
+			}
+			rs.close();
+			st.close();
+			c.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return ll;
+	}
+	/*
+	public boolean exists(String curp) {
+		try {	S
+			Connection c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			Statement st = c.createStatement();
+		}
+	}*/
 }

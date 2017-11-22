@@ -1,4 +1,4 @@
-package modelos;
+package application.models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 
-import clases.Evento;
+import application.classes.Evento;
 
 public class EventoBean {
 	//Parametros conexion BD
@@ -27,8 +27,7 @@ public class EventoBean {
 			st = c.createStatement();
 			String sql = "CREATE TABLE IF NOT EXISTS Evento" + 
 					"(idHuesp varchar(20), " +
-					"numEvento int, " + 
-					"tipoEvento varchar(10), " + 
+					"numEvento int, " +  
 					"fecReg Timestamp," + 
 					"descEvento varchar(250), " + 
 					"nomEmfermero varchar(80), " + 
@@ -49,16 +48,15 @@ public class EventoBean {
 		try {
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
-			String sql = "INSERT INTO TABLE Evento("
-					+ "(idHuesp, numEvento, tipoEvento, fecReg, descEvento, nomEnfermero, bReceta, dirReceta)"
+			String sql = "INSERT INTO Evento"
+					+ "(idHuesp, numEvento, fecReg, descEvento, nomEnfermero, bReceta, dirReceta)"
 					+ "VALUES ('" + ev.getIdHuesp()
 					+ "', " + ev.getNumEvento()
-					+ ", '" + ev.getTipoEvento()
 					+ "', '" + toTimestamp(ev.getFecReg())
 					+ "', '" + ev.getDescEvento()
 					+ "', '" + ev.getNomEnfermero()
 					+ "', '" + ev.hasReceta()
-					+ "', '" + ev.getDirReceta() + "';";
+					+ "', '" + ev.getDirReceta() + "');";
 			st.executeUpdate(sql);
 			st.close();
 			c.close();
@@ -74,7 +72,6 @@ public class EventoBean {
 			c = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 			st = c.createStatement();
 			String sql = "UPDATE Evento SET "
-					+ "tipoEvento = '" + ev.getTipoEvento()
 					+ "', fecReg = '" + toTimestamp(ev.getFecReg())
 					+ "', descEvento = '" + ev.getDescEvento()
 					+ "', nomEnfermero = '" + ev.getNomEnfermero()
@@ -100,7 +97,6 @@ public class EventoBean {
 			st = c.createStatement();
 			rs = st.executeQuery("SELECT * FROM Evento WHERE idHuesp = '" + idHuesp	
 					+ "' AND numEvento = " + numEvento + ";");
-			ev.setTipoEvento(rs.getString("tipoEvento"));
 			ev.setFecReg(toLocalDateTime(rs.getString("fecReg")));
 			ev.setDescEvento(rs.getString("descEvento"));
 			ev.setNomEnfermero(rs.getString("nomEnfermero"));

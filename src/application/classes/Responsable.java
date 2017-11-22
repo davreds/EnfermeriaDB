@@ -1,4 +1,4 @@
-package clases;
+package application.classes;
 
 public class Responsable {
 	//Atributos

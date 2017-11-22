@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="604.0" prefWidth="767.0" style="-fx-background-color: #CCFFFF;" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PerfController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="604.0" prefWidth="785.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Text layoutX="199.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Responsables" wrappingWidth="78.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="135.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Primer Nombre" wrappingWidth="111.49609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <TextField layoutX="250.0" layoutY="109.0" prefHeight="27.0" prefWidth="500.0" promptText="Primer Nombre" />
+            <TextField layoutX="96.0" layoutY="346.0" prefHeight="25.0" prefWidth="86.0" promptText="Sexo" />
+            <Text layoutX="29.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexo" wrappingWidth="57.49609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="29.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de nacimiento " wrappingWidth="162.49609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <TextField layoutX="250.0" layoutY="151.0" prefHeight="31.0" prefWidth="500.0" promptText="Segundo Nombre" />
+            <TextField layoutX="250.0" layoutY="195.0" prefHeight="27.0" prefWidth="500.0" promptText="Primer Apellido" />
+            <TextField layoutX="29.0" layoutY="401.0" prefHeight="33.0" prefWidth="111.0" promptText="dd/mm/aaaa" />
+            <Text layoutX="29.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Padecimientos" wrappingWidth="111.49609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <TextArea layoutX="24.0" layoutY="465.0" prefHeight="79.0" prefWidth="717.0" promptText="Padecimientos" />
+            <Button layoutX="676.0" layoutY="558.0" mnemonicParsing="false" styleClass="success" text="Agregar" />
+            <Button layoutX="9.0" layoutY="558.0" mnemonicParsing="false" styleClass="danger" text="Cancelar" />
+            <Text layoutX="131.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Segundo Nombre" wrappingWidth="120.49609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="135.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Primer Apellido" wrappingWidth="111.49609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="135.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Segundo Apellido" wrappingWidth="111.49609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <TextField layoutX="250.0" layoutY="242.0" prefHeight="27.0" prefWidth="500.0" promptText="Segundo Apellido" />
+            <TextField layoutX="199.0" layoutY="323.0" prefHeight="31.0" prefWidth="340.0" promptText="Nombre" />
+            <TextField layoutX="199.0" layoutY="362.0" prefHeight="31.0" prefWidth="340.0" promptText="Nombre" />
+            <TextField layoutX="199.0" layoutY="401.0" prefHeight="31.0" prefWidth="340.0" promptText="Nombre" />
+            <TextField layoutX="550.0" layoutY="323.0" prefHeight="31.0" prefWidth="191.0" promptText="Tel" />
+            <TextField layoutX="550.0" layoutY="362.0" prefHeight="31.0" prefWidth="191.0" promptText="Tel" />
+            <TextField layoutX="550.0" layoutY="401.0" prefHeight="31.0" prefWidth="191.0" promptText="Tel" />
+            <ImageView fitHeight="107.0" fitWidth="96.0" layoutX="630.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="14.0" layoutY="227.0" mnemonicParsing="false" styleClass="warning" text="Imagen" />
+            <ImageView fitHeight="118.0" fitWidth="105.0" layoutX="10.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="65.0" fitWidth="86.0" layoutX="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="250.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de huesped" wrappingWidth="462.49609375">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
